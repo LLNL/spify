@@ -1,0 +1,72 @@
+
+YAMLCPPDIR:=/opt/yaml-cpp
+
+
+CXXINC:=-I$(YAMLCPPDIR)/include -I./include
+CXXLIB:=-L$(YAMLCPPDIR)/lib -L./lib -lyaml-cpp
+
+CXXFLAGS:= -fPIC -g -O0
+
+CXX:=g++
+
+OBJS:= param.o scalar_param.o vector_param.o map_param.o parser.o
+
+OBJS:=$(patsubst %.o,src/%.o,$(OBJS))
+SRCS:=$(patsubst %.o,%.cpp,$(OBJS))
+INCLUDES:=$(patsubst %.o,%.h,$(OBJS))
+INCLUDES:=$(patsubst src/%,include/spify/%,$(INCLUDES))
+INCLUDES+=include/spify/spify.h
+
+TESTS:=Simple00IFP Simple01IFP ComplexIFP
+TESTS:=$(patsubst %,test/test%,$(TESTS))
+
+
+EXAMPLES:=ExampleIFP
+EXAMPLES:=$(patsubst %,example/app%,$(EXAMPLES))
+EXAMPLES+=example/ExampleIFPMaster.yml
+
+LIBSTATIC:=lib/libspify.a
+LIBDYNAMIC:=lib/libspify.so
+
+all: lib test example
+
+lib: $(INCLUDES) $(LIBSTATIC)
+
+test: $(TESTS)
+
+example: $(EXAMPLES)
+
+include/spify/%.h:
+	if [ ! -e $@ ] ; \
+        then \
+          cd include/spify ; \
+          ln -s ../../src/`basename $@` ./ ; \
+        fi
+
+test/test%: test/test%.cpp test/%.cpp $(LIBSTATIC)
+	$(CXX) $^ $(CXXINC) $(CXXLIB) $(CXXFLAGS) $(DEFS) -o $@
+
+example/ExampleIFP.cpp example/ExampleIFP.h: example/generateExampleIFP.py
+	cd example ; ./generateExampleIFP.py
+
+example/ExampleIFPMaster.yml: example/ExampleIFP.cpp example/ExampleIFP.h
+	$(CXX) $< $(CXXINC) $(LIBSTATIC) $(CXXLIB) $(CXXFLAGS) $(DEFS) -DEXAMPLEIFP_MAKEMASTER -o example/masterMakerExampleIFP.x
+	cd example/ ; ./masterMakerExampleIFP.x &> /dev/null; rm masterMakerExampleIFP.x
+
+example/app%: example/app%.cpp example/%.cpp $(LIBSTATIC)
+	$(CXX) $^ $(CXXINC) $(CXXLIB) $(CXXFLAGS) $(DEFS) -o $@
+
+src/%.o: src/%.cpp src/%.h
+	$(CXX) -c $< $(CXXINC) $(CXXFLAGS) $(DEFS) -o $@
+
+
+$(LIBSTATIC): $(OBJS)
+	ar ruv $@ $^
+	ranlib $@
+
+
+$(LIBDYNAMIC): $(OBJS)
+	$(CXX) -shared $(CXXFLAGS) $^ -o $@
+
+clean:
+	rm -f src/*.o $(TESTS) $(EXAMPLES) $(LIBSTATIC) example/ExampleIFP.{cpp,h} example/*.pyc

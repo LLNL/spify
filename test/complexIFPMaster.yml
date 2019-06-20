@@ -1,0 +1,81 @@
+#My Boolean Option
+#Type: boolean
+#Optional with default value of 0
+boolOption: y|n
+
+#Type: boolean vector
+#Optional with default value of [1, 0, 1, 0]
+boolVectOption: [y|n,y|n,y|n]
+
+#Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+#sed do eiusmod tempor incididunt ut labore et dolore magna 
+#aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+#ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+#Duis aute irure dolor in reprehenderit in voluptate velit 
+#esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+#occaecat cupidatat non proident, sunt in culpa qui officia 
+#deserunt mollit anim id est laborum. 
+#Type: integer
+#Must be one of [0, 1, 3, 5, 7]
+intOption: I
+
+#My Integer Vector Option
+#Type: integer vector
+#Must be greater than -10
+#Must be less than 10
+#Optional with default value of [-3, -2, -1, 0]
+intVectOption: [I,I,I]
+
+#Type: floating-point
+#Must be less than 3000
+#Optional with default value of 300
+floatOption: x.y
+
+#Type: floating-point vector
+#Must be greater than 0
+#Must be less than 100
+floatVectOption: [x.y,x.y,x.y]
+
+#Type: string
+#Must be one of [foo, bar, baz]
+#Optional with default value of foo
+stringOption: <string>
+
+#My String Vector Option
+#Type: string vector
+stringVectOption: [<string>,<string>,<string>]
+
+#My Integer-Integer Map Option
+#Type: integer:integer map
+#First values must be one of [1, 2, 4, 6]
+intintMapOption: {
+I: I,
+I: I,
+I: I
+}
+
+#Type: string:integer map
+#Optional with default value of
+#{
+#bar: 2,
+#foo: 1
+#}
+stringintMapOption: {
+<string>: I,
+<string>: I,
+<string>: I
+}
+
+#Type: floating-point:floating-point map
+#Optional with default value of
+#{
+#1: 10,
+#2: 20,
+#3: 30
+#}
+floatfloatMapOption: {
+x.y: x.y,
+x.y: x.y,
+x.y: x.y
+}
+

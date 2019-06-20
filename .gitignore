@@ -1,0 +1,7 @@
+/Makefile
+/src/*.o
+/src/*.pyc
+/test/testSimple00IFP
+/test/testSimple01IFP
+/test/testComplexIFP
+/example/appExampleIFP

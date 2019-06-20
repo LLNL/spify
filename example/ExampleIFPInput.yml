@@ -1,0 +1,38 @@
+
+boolOption: on
+boolVectOption: [on, off, on, off]
+intOption: 5
+intVectOption: [-9, -2, 0, 1, 2, 9]
+floatOption:  5.5
+floatVectOption: [ 1.1, 2.2, 3.3 ]
+
+stringOption: foo
+stringVectOption: [CO, OH, H2O]
+
+
+intIntMapOption: {
+ 1: 2,
+ 2: 3,
+ 4: 4
+ }
+
+stringIntMapOption: {
+ foo: 2,
+ bar: 3,
+ baz: 4
+ }
+
+stringStringMapOption: {
+ foo: parrot,
+ bar: parrot,
+ baz: parrot
+ }
+
+floatFloatMapOption: {
+ 2.0: 1.0,
+ 3.0: 4.0,
+ 20.0: 3.0
+ }
+
+
+

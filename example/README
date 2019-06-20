@@ -1,0 +1,11 @@
+To implement a new parser:
+
+ * Modify generateExampleIFP.py to suite your needs and then execute the script.
+ * Copy generated .h and .cpp files to your application
+ * Compile application with -I$(SPIFYDIR)/include -L$(SPIFYDIR)/lib -lspify -I$(YAMLCPPDIR)/include -L$(YAMLCPPDIR)/lib -lyaml-cpp
+
+Example application code in appExampleIFP.cpp (in short, create parser with input file, get/use data)
+
+Parameters can be validated explicitly by calling spify::parser::validateParameters()
+or will be validated on first call to spify::parser::get(...);
+Parameters cannot be added after first call to parser object get(...) methods.

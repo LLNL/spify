@@ -1,0 +1,5 @@
+#My Boolean Option
+#Type: boolean
+#Optional with default value of 0
+myOption: y
+
