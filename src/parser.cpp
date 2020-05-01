@@ -1,6 +1,7 @@
 #include "spify/parser.h"
 #include <fstream>
 #include <iostream>
+#include <cassert>
 
 
 namespace spify
