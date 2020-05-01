@@ -51,8 +51,6 @@ class {IFPName} : public spify::parser
 }}
 
 {CPP_MEMBER_ACCESS}
-
-{CPP_MASTER_GEN}
 """
 
 #Convert type strings to cpp types
@@ -312,45 +310,11 @@ class {IFPName} : public spify::parser
         return cpp_member_access_str
 
 
-    def make_cpp_master_gen_section(self,name):
-        return """
-#ifdef {uppername}_MAKEMASTER
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{{
-    FILE * tmpFile;
-    char tmpFileName[32];
-
-    memset(tmpFileName,0,sizeof(tmpFileName));
-    strncpy(tmpFileName,"ymlfXXXXXX",10);
-    mkstemp(tmpFileName);
-    tmpFile = fopen(tmpFileName,"w");
-    fprintf(tmpFile,"printMasterFileTo: {name}Master.yml\\n");
-    fclose(tmpFile);
-
-    try //This will fail.
-    {{
-        {name} inputData(tmpFileName);
-    }}
-    catch (...)
-    {{
-        remove(tmpFileName);
-    }}
-    return(0);
-}}
-#endif
-""".format(name=name,uppername=name.upper())
-
-
     def write_cpp(self,name,params):
         with open('{class_name}.cpp'.format(class_name=name),'w') as cppfile:
             cppfile.write( self.CPP_STRING.format(IFPName=name,
                            CPP_CONSTRUCTOR=self.make_cpp_constructor(params),
-                           CPP_MEMBER_ACCESS=self.make_cpp_member_access(name,params),
-                           CPP_MASTER_GEN=self.make_cpp_master_gen_section(name)) )
+                           CPP_MEMBER_ACCESS=self.make_cpp_member_access(name,params)) )
 
 
     def validate_param(self,param):
