@@ -141,7 +141,7 @@ class {IFPName} : public spify::parser
     def write_h(self,name,params):
         p_access_funcs = self.make_p_access_funcs(params)
         p_member_data = self.make_p_member_data(params)
-        with open('{class_name}.h'.format(class_name=name),'wb') as hfile:
+        with open('{class_name}.h'.format(class_name=name),'w') as hfile:
             hfile.write(self.H_STRING.format(IFPName=name,
                               PARAM_ACCESS_FUNCS=p_access_funcs,
                               PARSER_MEMBER_DATA=p_member_data))
@@ -239,7 +239,7 @@ class {IFPName} : public spify::parser
             if dv != None:
                 dv_str = "    std::map<{type1},{type2}> {name}_defv;\n".format(
                     type1=type1_str,type2=type2_str,name=param['name'])
-                for k,v in dv.iteritems():
+                for k,v in dv.items():
                     dv_str += \
                     '    {name}_defv[{key}] = {val};\n'.format(name=param['name'],key=self.wrap_string(k,type1_str),val=self.wrap_string(v,type2_str))
                 base_str = dv_str + base_str
@@ -346,7 +346,7 @@ int main(int argc, char **argv)
 
 
     def write_cpp(self,name,params):
-        with open('{class_name}.cpp'.format(class_name=name),'wb') as cppfile:
+        with open('{class_name}.cpp'.format(class_name=name),'w') as cppfile:
             cppfile.write( self.CPP_STRING.format(IFPName=name,
                            CPP_CONSTRUCTOR=self.make_cpp_constructor(params),
                            CPP_MEMBER_ACCESS=self.make_cpp_member_access(name,params),
@@ -371,7 +371,7 @@ int main(int argc, char **argv)
         for p in params:
             success = self.validate_param(p)
             if not success:
-                print "Parameter: "+ str(p) + " not valid."
+                print("Parameter: "+ str(p) + " not valid.")
                 return False
         return True
 
@@ -380,7 +380,7 @@ int main(int argc, char **argv)
         valid = self.validate_params(params)
         if not valid:
             exit(1)
-        print "Parameters OK"
+        print("Parameters OK")
         self.write_h(name,params)
         self.write_cpp(name,params)
 
@@ -468,7 +468,7 @@ int main(int argc, char **argv)
 
     def make_master_file(self,name,params):
         master_file_name="{name}Master.yml".format(name=name)
-        print "Generating master file as {0} ...".format(master_file_name)
+        print("Generating master file as {0} ...".format(master_file_name))
         with open(master_file_name,'w') as master_file:
             for p in params:
                 master_file.write(self.pretty_print(p))
