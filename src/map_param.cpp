@@ -118,7 +118,7 @@ void map_param<T,U>::validate(YAML::Node &inputFile)
     {
         try
         { 
-            values = inputFile[m_key].as<std::map<T,U> >();
+            values = inputFile[m_key].template as<std::map<T,U> >();
             foundVal = true;
         }
         catch (const YAML::Exception &e)

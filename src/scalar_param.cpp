@@ -84,7 +84,7 @@ void scalar_param<T>::validate(YAML::Node &inputFile)
     {
         try
         { 
-            value = inputFile[m_key].as<T>();
+            value = inputFile[m_key].template as<T>();
             foundVal = true;
         }
         catch (const YAML::Exception &e)

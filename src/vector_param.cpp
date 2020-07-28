@@ -83,7 +83,7 @@ void vector_param<T>::validate(YAML::Node &inputFile)
     {
         try
         { 
-            values = inputFile[m_key].as<std::vector<T> >();
+            values = inputFile[m_key].template as<std::vector<T> >();
             foundVal = true;
         }
         catch (const YAML::Exception &e)
