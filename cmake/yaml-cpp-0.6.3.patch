@@ -1,0 +1,25 @@
+diff --git a/include/yaml-cpp/node/convert.h b/include/yaml-cpp/node/convert.h
+index d61b73d..0ba510f 100644
+--- a/include/yaml-cpp/node/convert.h
++++ b/include/yaml-cpp/node/convert.h
+@@ -190,13 +190,14 @@ struct convert<std::map<K, V>> {
+ };
+ 
+ // std::vector
+-template <typename T>
+-struct convert<std::vector<T>> {
+-  static Node encode(const std::vector<T>& rhs) {
++template <typename T, typename A>
++struct convert<std::vector<T,A>> {
++  static Node encode(const std::vector<T,A>& rhs) {
+     Node node(NodeType::Sequence);
+-    for (typename std::vector<T>::const_iterator it = rhs.begin();
+-         it != rhs.end(); ++it)
+-      node.push_back(*it);
++//    for (typename std::vector<T,A>::const_iterator it = rhs.begin();
++//         it != rhs.end(); ++it)
++//      node.push_back(*it);
++      for (const T& elem : rhs) node.push_back(elem);
+     return node;
+   }
+ 
