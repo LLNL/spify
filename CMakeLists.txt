@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
 project(spify LANGUAGES CXX)
 
@@ -12,9 +12,8 @@ find_package(Python)
 include(FetchContent)
 FetchContent_Declare(
   yaml-cpp
-  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
-  GIT_TAG        yaml-cpp-0.6.3
-  PATCH_COMMAND patch -p1 < "${CMAKE_CURRENT_LIST_DIR}/cmake/yaml-cpp-0.6.3.patch"
+  URL https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.6.3.tar.gz
+  PATCH_COMMAND patch -p1 -i "${CMAKE_CURRENT_LIST_DIR}/cmake/yaml-cpp-0.6.3.patch"
 )
 
 FetchContent_GetProperties(yaml-cpp)
