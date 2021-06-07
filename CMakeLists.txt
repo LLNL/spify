@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
 project(spify LANGUAGES CXX)
 
@@ -38,9 +38,11 @@ add_custom_command(
     OUTPUT ${IFPName}.cpp ${IFPName}.h
     COMMENT "Generating code for ${IFPName}."
 )
+
 set(targets ${ARGN})
 foreach(target ${targets})
 target_include_directories(${target} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_sources(${target} PRIVATE ${IFPName}.cpp)
 endforeach()
 endfunction()
 
