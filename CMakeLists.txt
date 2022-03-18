@@ -31,7 +31,7 @@ endif()
 
 function(add_spifyIFP_target IFPName)
 add_custom_command(
-    COMMAND PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=${spify_SOURCE_DIR}/src ${Python_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/generate${IFPName}.py
+    COMMAND ${CMAKE_COMMAND} -E env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=${spify_SOURCE_DIR}/src ${Python_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/generate${IFPName}.py
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generate${IFPName}.py
     OUTPUT ${IFPName}.cpp ${IFPName}.h
     COMMENT "Generating code for ${IFPName}."
