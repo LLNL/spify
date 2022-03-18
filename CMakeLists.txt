@@ -12,8 +12,7 @@ find_package(Python)
 include(FetchContent)
 FetchContent_Declare(
   yaml-cpp
-  URL https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.6.3.tar.gz
-  PATCH_COMMAND patch -p1 -i "${CMAKE_CURRENT_LIST_DIR}/cmake/yaml-cpp-0.6.3.patch"
+  URL https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.7.0.tar.gz
 )
 
 FetchContent_GetProperties(yaml-cpp)
