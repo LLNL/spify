@@ -227,7 +227,6 @@ void vector_param<T>::print(std::ostream& os)
 }
 
 //Explicit declaration of known types.
-template class vector_param<bool>;
 template class vector_param<int>;
 template class vector_param<double>;
 template class vector_param<std::string>;

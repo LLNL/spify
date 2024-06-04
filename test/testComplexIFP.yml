@@ -1,6 +1,5 @@
 
 boolOption: on
-boolVectOption: [on, off, on, off]
 intOption: 5
 intVectOption: [-9, -2, 0, 1, 2, 9]
 floatOption:  5.5

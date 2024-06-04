@@ -22,15 +22,6 @@ spify_parser_params.append(
 
 spify_parser_params.append(
 {
-    'name':'boolVectOption',
-    'type':'v_bool',
-    'shortDesc':'A vector of booleans.',
-    'defaultValue': [1,0,1,0]
-}
-)
-
-spify_parser_params.append(
-{
     'name':'intOption',
     'type':'int',
     'longDesc':

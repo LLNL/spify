@@ -11,17 +11,6 @@ ComplexIFP::ComplexIFP(const std::string& fileName)
         ->defaultValue(false)
     );
 
-    std::vector<bool> bvoDefault;
-    bvoDefault.push_back(true);
-    bvoDefault.push_back(false);
-    bvoDefault.push_back(true);
-    bvoDefault.push_back(false);
-    addParameter
-    (
-        (new spify::vector_param<bool>("boolVectOption"))
-        ->defaultValue(bvoDefault)
-    );
-
     std::vector<int> ioDiscrete;
     ioDiscrete.push_back(0);
     ioDiscrete.push_back(1);
