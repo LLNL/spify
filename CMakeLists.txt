@@ -12,7 +12,7 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 include(FetchContent)
 FetchContent_Declare(
   yaml-cpp
-  URL https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.7.0.tar.gz
+  URL https://github.com/jbeder/yaml-cpp/archive/0.8.0.tar.gz
 )
 
 FetchContent_GetProperties(yaml-cpp)
